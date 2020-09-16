@@ -23,18 +23,16 @@ fn main() {
 fn handle_connection(mut stream: TcpStream) {
     let mut buffer = [0; 1024];
     let size = stream.read(&mut buffer).unwrap();
-    let mut mess = (str::from_utf8(&buffer.to_vec()).unwrap())[..size].to_owned();
-    // println!("{:?}", &(str::from_utf8(&*buffer.to_vec()).unwrap())[..size]);
-    println!("{}", &mess[4..mess.find("HTTP").unwrap()]);
-    let get = b"GET / HTTP/1.1\r\n";
+    let mess = (str::from_utf8(&buffer.to_vec()).unwrap())[..size].to_owned();
+    let get = b"GET"; //* HTTP/1.1\r\n";
     let (status_line, filename) = if buffer.starts_with(get) {
-        ("HTTP/1.1 200 OK\r\n\r\n", format!("{}{}", STATIC_PATH, "index.html"))
+        ("HTTP/1.1 200 OK\r\n\r\n", format!("{}{}", STATIC_PATH, &mess[5..(mess.find("HTTP").unwrap() - 1)]))
     } else {
         ("HTTP/1.1 404 NOT FOUND\r\n\r\n", format!("{}{}", STATIC_PATH, "404.html"))
     };
-
+    println!("{}", filename);
     let contents = fs::read_to_string(filename).unwrap();
-
+    
     let response = format!("{}{}", status_line, contents);
 
     stream.write(response.as_bytes()).unwrap();
