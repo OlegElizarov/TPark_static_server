@@ -15,6 +15,7 @@ cargo run
 ab -c 10 -n 6000 http://127.0.0.1:8080/text.txt
 ```
 Результат для Nginx - 105 RPS
+
 ![](benchmarks/Nginx.png)
 
 Результат для написанного сервера - 4360 RPS
