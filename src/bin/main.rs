@@ -21,7 +21,7 @@ const NOT_FOUND_RESP: &str = "HTTP/1.1 404 NOT FOUND";
 const NOT_ALLOWED: &str = "HTTP/1.1 405 Method Not Allowed";
 // const HTML_TYPE: &str = "Content-Type: text/html; charset=utf-8";
 // const JPEG_TYPE: &str = "Content-Type: image/jpeg; charset=utf-8";
-const WORKERS_NUM: usize = 5;
+const WORKERS_NUM: usize = 2;
 
 
 fn main() {
