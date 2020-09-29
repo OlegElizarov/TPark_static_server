@@ -9,5 +9,5 @@ edition = "2018"
 [dependencies]
 chunked_transfer = "1.2.0"
 sendfile = "0.3.0"
-snedfile = "0.1.0"
 futures-test-preview = "0.3.0-alpha.18"
+mime = "0.3.16"
